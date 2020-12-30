@@ -235,6 +235,12 @@ func guestCREATE(c *Config, guest_name string, disk_store string,
 			// Therefore, you MUST use the ‘--X:injectOvfEnv’ option with the ‘--poweron’ option
 			extra_params = "--X:injectOvfEnv --allowExtraConfig --powerOn "
 
+			if(strings.HasSuffix(src_path, ".ova") {
+
+				// Add Source Type
+				extra_params := fmt.Sprintf("%s --sourceType=OVA ")
+			}
+
 			for ovf_prop_key, ovf_prop_value := range ovf_properties {
 				extra_params = fmt.Sprintf("%s --prop:%s='%s' ", extra_params, ovf_prop_key, ovf_prop_value)
 			}
@@ -243,6 +249,9 @@ func guestCREATE(c *Config, guest_name string, disk_store string,
 
 		ovf_cmd := fmt.Sprintf("ovftool --acceptAllEulas --noSSLVerify --X:useMacNaming=false %s "+
 			"-dm=%s --name='%s' --overwrite -ds='%s' %s '%s' '%s'", extra_params, boot_disk_type, guest_name, disk_store, net_param, src_path, dst_path)
+
+		// Log OVF Command
+		log.Println("[guestCREATE] OVF Command Full : " + ovf_cmd)
 
 		if runtime.GOOS == "windows" {
 			osShellCmd = "cmd.exe"

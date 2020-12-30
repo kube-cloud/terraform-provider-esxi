@@ -168,7 +168,7 @@ func updateVmx_contents(c *Config, vmid string, iscreate bool, memsize int, numv
 	if len(guestinfo) > 0 {
 		parsed_vmx := ParseVMX(vmx_contents)
 		for k, v := range guestinfo {
-			log.Println("SAVING", k, v)
+			log.Println("[guest_function.go] Guest Info to Save", k, v)
 			parsed_vmx["guestinfo."+k] = v.(string)
 		}
 		vmx_contents = EncodeVMX(parsed_vmx)
