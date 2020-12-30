@@ -59,7 +59,7 @@ func resourceGUESTUpdate(d *schema.ResourceData, m interface{}) error {
 
 	// Validate guestOS
 	if validateGuestOsType(guestos) == false {
-		return errors.New("Error: invalid guestos.  see https://github.com/josenk/vagrant-vmware-esxi/wiki/VMware-ESXi-6.5-guestOS-types")
+		return errors.New("Error: invalid guestos.  see https://github.com/kube-cloud/vagrant-vmware-esxi/wiki/VMware-ESXi-6.5-guestOS-types")
 	}
 
 	for i = 0; i < virtualDiskCount; i++ {

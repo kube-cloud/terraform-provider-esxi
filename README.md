@@ -35,9 +35,9 @@ export GOPATH="$HOME/go"
 
 go get -u -v golang.org/x/crypto/ssh
 go get -u -v github.com/hashicorp/terraform
-go get -u -v github.com/josenk/terraform-provider-esxi
+go get -u -v github.com/kube-cloud/terraform-provider-esxi
 
-cd $GOPATH/src/github.com/josenk/terraform-provider-esxi
+cd $GOPATH/src/github.com/kube-cloud/terraform-provider-esxi
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -ldflags '-w -extldflags "-static"' -o terraform-provider-esxi_`cat version`
 
 sudo cp terraform-provider-esxi_`cat version` /usr/local/bin
@@ -80,15 +80,15 @@ This is a provider!  NOT a provisioner.
 * To configure your guest VM after it's built, you need to use a provisioner.
   * Refer to Hashicorp list of provisioners: https://www.terraform.io/docs/provisioners/index.html
 * To help you get started, there is are examples in a separate repo I created.   You can create a Pull Request if you would like to contribute.
-  * https://github.com/josenk/terraform-provider-esxi-wiki
+  * https://github.com/kube-cloud/terraform-provider-esxi-wiki
 
 
 Vagrant vs Terraform.
 ---------------------
 If you are using vagrant as a deployment tool (infa as code), you may want to consider a better tool.  Terraform.  Vagrant is better for development environments, while Terraform is better at managing infrastructure.  Please give my terraform plugin a try and give me some feedback.  What you're trying to do, what's missing, what works, what doesn't work, etc...
 >https://www.vagrantup.com/intro/vs/terraform.html
->https://github.com/josenk/terraform-provider-esxi
->https://github.com/josenk/vagrant-vmware-esxi
+>https://github.com/kube-cloud/terraform-provider-esxi
+>https://github.com/kube-cloud/vagrant-vmware-esxi
 
 
 Why this plugin?
@@ -107,17 +107,17 @@ terraform {
   required_version = ">= 0.13"
   required_providers {
     esxi = {
-      source = "registry.terraform.io/josenk/esxi"
+      source = "registry.terraform.io/jetune/esxi"
       #
       # For more information, see the provider source documentation:
-      # https://github.com/josenk/terraform-provider-esxi
+      # https://github.com/kube-cloud/terraform-provider-esxi
       # https://registry.terraform.io/providers/josenk/esxi
     }
   }
 }
 ```
 * Manual installation (Terraform 0.11.x or 0.12.x only)
-  * Download pre-built binaries from https://github.com/josenk/terraform-provider-esxi/releases.  Place a copy of it in your path or current directory of your terraform project.
+  * Download pre-built binaries from https://github.com/kube-cloud/terraform-provider-esxi/releases.  Place a copy of it in your path or current directory of your terraform project.
 
 
 

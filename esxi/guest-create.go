@@ -235,10 +235,10 @@ func guestCREATE(c *Config, guest_name string, disk_store string,
 			// Therefore, you MUST use the ‘--X:injectOvfEnv’ option with the ‘--poweron’ option
 			extra_params = "--X:injectOvfEnv --allowExtraConfig --powerOn "
 
-			if(strings.HasSuffix(src_path, ".ova") {
+			if strings.HasSuffix(src_path, ".ova") {
 
 				// Add Source Type
-				extra_params := fmt.Sprintf("%s --sourceType=OVA ")
+				extra_params = fmt.Sprintf("%s --sourceType=OVA ", extra_params)
 			}
 
 			for ovf_prop_key, ovf_prop_value := range ovf_properties {
