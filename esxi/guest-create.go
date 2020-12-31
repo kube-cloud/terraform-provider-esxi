@@ -296,11 +296,17 @@ func guestCREATE(c *Config, guest_name string, disk_store string,
 			osShellCmdOpt = "-c"
 		}
 
+		// Log OVF Command
+		log.Println("[guestCREATE] Build Guest Creation OS Command : " + ovf_cmd)
+
 		//  Execute ovftool script (or batch) here.
 		cmd := exec.Command(osShellCmd, osShellCmdOpt, ovf_cmd)
 
 		re := regexp.MustCompile(`vi://.*?@`)
 		log.Printf("[guestCREATE] ovf_cmd: %s\n", re.ReplaceAllString(ovf_cmd, "vi://XXXX:YYYY@"))
+
+		// Log OVF Command
+		log.Println("[guestCREATE] Execute Guest Creation Command : " + ovf_cmd)
 
 		cmd.Stdout = &out
 		err = cmd.Run()
